@@ -3,26 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transport Sana Rasmané (TSR) - Voyagez avec Excellence</title>
+    <title>Transport Sana Rasmané (TSR) - Voyagez en Première Classe</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div id="preloader">
-        <div class="bus-container">
-            <svg class="bus" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40">
-                <path d="M85,35 H15 C10,35 10,30 15,30 H85 C90,30 90,35 85,35 Z" fill="#FFF"/>
-                <path d="M15,30 C10,30 10,25 15,25 H75 L85,15 H90 V30 H85" fill="#005A9C"/>
-                <path d="M15,25 L5,15 H75 L85,15 V10 H5z" fill="#FFF"/>
-                <path d="M5,15 H75 V10 H5z" fill="#2E8B57"/>
-                <circle cx="25" cy="35" r="4" fill="#333"/>
-                <circle cx="75" cy="35" r="4" fill="#333"/>
-            </svg>
-            <div class="road"></div>
-        </div>
+        <div class="logo-placeholder">TSR</div>
     </div>
 
     <header id="header">
@@ -31,9 +21,10 @@
             <ul class="nav-links">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#avantages">Nos Avantages</a></li>
-                <li><a href="#horaires">Horaires & Tarifs</a></li>
+                <li><a href="#horaires">Horaires</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <a href="#horaires" class="nav-cta">Réserver</a>
             <div class="burger">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -45,29 +36,35 @@
     <main>
         <section id="accueil" class="page active">
             <div class="hero-container">
-                <h1 class="fade-in">Transport Sana Rasmané</h1>
-                <p class="fade-in">L'excellence du voyage au cœur du Burkina Faso.</p>
-                <a href="#horaires" class="cta-button fade-in">Trouver mon trajet</a>
+                <h1 class="fade-in">La route de l'excellence, <br>le confort en plus.</h1>
+                <p class="fade-in">Découvrez le Burkina Faso avec Transport Sana Rasmané. Sécurité, ponctualité et service premium à chaque kilomètre.</p>
+                <a href="#horaires" class="cta-button fade-in">Consulter les départs</a>
             </div>
         </section>
         
         <section id="avantages" class="page">
-            <h2>Pourquoi voyager avec nous ?</h2>
+            <h2>Pourquoi nous choisir ?</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="icon-container"> C </div>
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7h-4a3 3 0 0 0-3-3v-2a3 3 0 0 0-3 3H5a7 7 0 0 0 7 7z"/><path d="M5 15V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7"/><path d="M2 15h20"/></svg>
+                    </div>
                     <h3>Confort Supérieur</h3>
                     <p>Nos bus modernes et climatisés sont conçus pour rendre votre voyage des plus agréables.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-container"> S </div>
+                    <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
                     <h3>Sécurité Garantie</h3>
-                    <p>Avec des chauffeurs expérimentés et des véhicules entretenus, votre sécurité est notre priorité absolue.</p>
+                    <p>Avec des chauffeurs expérimentés et des véhicules entretenus, votre sécurité est notre priorité.</p>
                 </div>
                 <div class="feature-card">
-                     <div class="icon-container"> P </div>
+                     <div class="icon-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                     </div>
                     <h3>Ponctualité Fiable</h3>
-                    <p>Nous respectons vos horaires. Nos départs et arrivées sont planifiés pour vous assurer une tranquillité d'esprit.</p>
+                    <p>Nous respectons vos horaires. Nos départs et arrivées sont planifiés pour votre tranquillité d'esprit.</p>
                 </div>
             </div>
         </section>
@@ -75,8 +72,8 @@
         <section id="horaires" class="page">
             <h2>Horaires & Réservation</h2>
             <p>Consultez nos départs et réservez votre place en quelques clics.</p>
-            <div class="table-container">
-                <input type="text" id="searchInput" placeholder="Rechercher par ville de départ ou d'arrivée...">
+            <div class="table-wrapper">
+                <div class="mobile-scroll-hint">Faites glisser pour voir plus ➔</div>
                 <table id="horairesTable">
                     <thead>
                         <tr>
@@ -103,13 +100,7 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            <h3>Transport Sana Rasmané</h3>
-            <p>Votre partenaire de confiance pour tous vos déplacements au Burkina Faso.</p>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 TSR. Tous droits réservés. Conçu avec soin.</p>
-        </div>
+        <p>&copy; 2025 Transport Sana Rasmané. Tous droits réservés.</p>
     </footer>
 
     <div id="bookingModal" class="modal">
