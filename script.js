@@ -3,15 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- GESTION DE L'ANIMATION D'OUVERTURE ---
     const preloader = document.getElementById('preloader');
     window.addEventListener('load', () => {
-        // Laisser l'animation du bus se terminer
         setTimeout(() => {
             preloader.classList.add('hide');
-            // Supprimer le preloader du DOM après la transition pour la performance
-            setTimeout(() => preloader.remove(), 500);
-        }, 2500); // Durée de l'animation du bus
+            setTimeout(() => preloader.remove(), 800);
+        }, 1500); // Durée totale de l'animation
     });
     
-    // --- BASE DE DONNÉES DES HORAIRES (Identique) ---
+    // --- BASE DE DONNÉES DES HORAIRES ---
     const horairesData = [
         { trajet: "OUAGA - KAYA", departs: ["05h30", "06h00", "07h00", "08h00", "09h00", "10h00", "11h00", "12h00", "13h00", "14h00", "15h00", "16h00", "17h00", "18h00", "19h00"], tarif: 3000 },
         { trajet: "OUAGA - DORI", departs: ["06h00", "08h00", "10h00", "12h00", "13h00", "15h00"], tarif: 7000 },
@@ -42,61 +40,46 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // --- GESTION DE LA NAVIGATION ---
-    const navLinksContainer = document.querySelector('.nav-links');
-    const allLinks = document.querySelectorAll('.nav-links a, .cta-button');
-    const pages = document.querySelectorAll('.page');
     const header = document.getElementById('header');
-    
-    // Changement de couleur du header au scroll
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Navigation "Single Page"
-    allLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            // On cache la section actuellement active
-            document.querySelector('.page.active').classList.remove('active');
-            // On affiche la nouvelle section
-            document.getElementById(targetId).classList.add('active');
-            
-            // On ferme le menu mobile si on clique sur un lien
-            if (navLinksContainer.classList.contains('nav-active')) {
-                navLinksContainer.classList.remove('nav-active');
-            }
-        });
-    });
-
-    // Gestion du menu Burger
     const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Ajout d'une classe au header lors du scroll
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
+    // Logique du menu burger pour mobile
     burger.addEventListener('click', () => {
-        navLinksContainer.classList.toggle('nav-active');
+        // Crée une copie du menu pour l'affichage mobile si elle n'existe pas
+        if (!document.querySelector('.nav-links-mobile')) {
+            const mobileMenu = navLinks.cloneNode(true);
+            mobileMenu.classList.remove('nav-links');
+            mobileMenu.classList.add('nav-links-mobile');
+            document.body.appendChild(mobileMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.remove('nav-active'));
+            });
+        }
+        
+        const mobileMenu = document.querySelector('.nav-links-mobile');
+        mobileMenu.classList.toggle('nav-active');
     });
+
 
     // --- GESTION DU TABLEAU DES HORAIRES ---
     const tableBody = document.querySelector('#horairesTable tbody');
-    const searchInput = document.getElementById('searchInput');
-
     function displayHoraires(data) {
         tableBody.innerHTML = '';
         data.forEach(item => {
             const row = `<tr>
-                <td>${item.trajet}</td>
+                <td><strong>${item.trajet}</strong></td>
                 <td>${item.departs.join(', ')}</td>
                 <td>${item.tarif.toLocaleString('fr-FR')}</td>
-                <td>
-                    <button class="reserve-btn" data-trajet="${item.trajet}" data-departs="${item.departs.join(',')}">Réserver</button>
-                </td>
+                <td><button class="reserve-btn" data-trajet="${item.trajet}" data-departs="${item.departs.join(',')}">Réserver</button></td>
             </tr>`;
             tableBody.innerHTML += row;
         });
     }
-    searchInput.addEventListener('keyup', e => {
-        const searchTerm = e.target.value.toLowerCase();
-        displayHoraires(horairesData.filter(item => item.trajet.toLowerCase().includes(searchTerm)));
-    });
     displayHoraires(horairesData);
 
     // --- GESTION DE LA MODALE DE RÉSERVATION ---
@@ -116,12 +99,10 @@ document.addEventListener('DOMContentLoaded', function() {
             trajetInput.value = trajet;
             heureDepartSelect.innerHTML = '';
             departs.forEach(heure => {
-                const option = document.createElement('option');
-                option.value = heure;
-                option.textContent = heure;
-                heureDepartSelect.appendChild(option);
+                const option = new Option(heure, heure);
+                heureDepartSelect.add(option);
             });
-            dateInput.value = today; // Réinitialiser la date à aujourd'hui à chaque ouverture
+            dateInput.value = today;
             modal.style.display = 'block';
         }
     });
